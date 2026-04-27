@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Toyopita — Sound Engineer, Producer, and Remixer based in Osaka, Japan. Active since 2019. Mastering, remix, production, and engineering.">
+<meta name="theme-color" content="#0a3a8c">
+
+<title>Toyopita — Sound Engineer / Producer / Remixer</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://toyopita.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toyopita.com/">
+<meta property="og:title" content="Toyopita — Sound Engineer / Producer / Remixer">
+<meta property="og:description" content="Osaka-based producer working in dub, reggae, hip-hop, R&B, and techno. Active since 2019.">
+<meta property="og:image" content="https://toyopita.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Toyopita — Sound Engineer / Producer / Remixer">
+<meta name="twitter:description" content="Osaka-based producer working in dub, reggae, hip-hop, R&B, and techno. Active since 2019.">
+<meta name="twitter:image" content="https://toyopita.com/og-image.png">
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --paper: #f5f3ed;
+  --paper-2: #ebe8df;
+  --ink: #0a3a8c;
+  --ink-soft: #2c5cb0;
+  --ink-deep: #04204e;
+  --red: #c83228;
+  --line: rgba(10,58,140,0.25);
+  --line-soft: rgba(10,58,140,0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #04122a;
+    --paper-2: #08193a;
+    --ink: #6db5ff;
+    --ink-soft: #4c8fe6;
+    --ink-deep: #cfe3ff;
+    --red: #ff7a6e;
+    --line: rgba(109,181,255,0.3);
+    --line-soft: rgba(109,181,255,0.12);
+  }
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--paper);
+  color: var(--ink-deep);
+  font-size: 13px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+}
+.sans { font-family: 'Inter', sans-serif; }
+
+::selection { background: var(--ink); color: var(--paper); }
+
+a { color: inherit; }
+
+/* ───── TITLE BLOCK (top) ───── */
+.titleblock {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto;
+  background: var(--paper);
+  border-bottom: 2px solid var(--ink);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.titleblock .cell {
+  padding: 0.4rem 0.7rem;
+  border-right: 1px solid var(--line);
+  color: var(--ink-deep);
+}
+.titleblock .cell:last-child { border-right: none; }
+.titleblock .cell .lbl {
+  font-size: 0.55rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.15em;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+.titleblock .cell .val { color: var(--ink-deep); font-weight: 500; }
+.titleblock .cell .val.red { color: var(--red); }
+
+.titleblock .nav-cell { padding: 0; display: flex; }
+.titleblock .nav-cell a {
+  display: block;
+  padding: 0.4rem 0.8rem;
+  color: var(--ink-deep);
+  text-decoration: none;
+  font-weight: 500;
+  border-right: 1px solid var(--line);
+}
+.titleblock .nav-cell a:last-child { border-right: none; }
+.titleblock .nav-cell a:hover { background: var(--ink); color: var(--paper); }
+
+/* ───── SHEET CONTAINER ───── */
+.sheet {
+  margin-top: 32px;
+  padding: 4rem 3rem 3rem;
+  max-width: 1400px;
+  margin-left: auto; margin-right: auto;
+  position: relative;
+}
+.sheet-num {
+  position: absolute;
+  top: 1rem; right: 3rem;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ───── HERO DRAWING ───── */
+.hero {
+  border: 1.5px solid var(--ink);
+  margin-bottom: 4rem;
+  position: relative;
+  background: var(--paper);
+}
+.hero-frame {
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.crosshair { position: absolute; width: 16px; height: 16px; pointer-events: none; }
+.crosshair::before, .crosshair::after { content: ''; position: absolute; background: var(--ink); }
+.crosshair::before { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-50%); }
+.crosshair::after { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-50%); }
+.crosshair.tl { top: 8px; left: 8px; }
+.crosshair.tr { top: 8px; right: 8px; }
+.crosshair.bl { bottom: 8px; left: 8px; }
+.crosshair.br { bottom: 8px; right: 8px; }
+
+.hero h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(4rem, 14vw, 14rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  color: var(--ink-deep);
+  text-align: center;
+}
+
+.hero-subtitle {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--line);
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-deep);
+}
+.hero-subtitle .red { color: var(--red); }
+
+.hero-specs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1.5px solid var(--ink);
+}
+.hero-specs > div {
+  padding: 1rem 1.2rem;
+  border-right: 1px solid var(--line);
+  font-size: 0.72rem;
+}
+.hero-specs > div:last-child { border-right: none; }
+.hero-specs .lbl {
+  font-size: 0.6rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.hero-specs .val {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink-deep);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.hero-specs .val .red { color: var(--red); }
+
+/* ───── DRAWING PANEL ───── */
+.drawing {
+  border: 1.5px solid var(--ink);
+  margin-bottom: 4rem;
+  background: var(--paper);
+  position: relative;
+}
+.drawing-head {
+  display: grid;
+  grid-template-columns: 100px 1fr auto auto;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1.5px solid var(--ink);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  align-items: center;
+}
+.drawing-head .num { color: var(--red); font-weight: 700; }
+.drawing-head .title {
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--ink-deep);
+  font-family: 'Inter', sans-serif;
+}
+.drawing-head .scale { color: var(--ink-soft); }
+.drawing-head .rev {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.15rem 0.5rem;
+  font-size: 0.65rem;
+}
+.drawing-body { padding: 2rem; position: relative; }
+
+/* ─── ABOUT diagram ─── */
+.iso-diagram {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: stretch;
+}
+.iso-diagram .iso-box {
+  border: 1px solid var(--line);
+  padding: 2rem;
+  position: relative;
+  min-height: 320px;
+  background:
+    linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.iso-diagram .iso-box .stamp {
+  position: absolute; top: 0.7rem; right: 0.7rem;
+  border: 1px solid var(--red); color: var(--red);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.iso-diagram .iso-box .figure {
+  width: 100%; height: 220px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.iso-diagram .iso-figure {
+  width: 200px; height: 130px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  position: relative;
+  transform: skewY(-15deg) skewX(15deg);
+}
+.iso-diagram .iso-figure::before {
+  content: '';
+  position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+  background:
+    linear-gradient(0deg, var(--ink) 0%, var(--ink) 1px, transparent 1px) 0 0/100% 12px,
+    linear-gradient(90deg, var(--ink) 0%, var(--ink) 1px, transparent 1px) 0 0/12px 100%;
+  opacity: 0.15;
+}
+.iso-diagram .iso-figure::after {
+  content: 'TOY';
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  color: var(--ink-deep);
+}
+.iso-diagram .iso-label {
+  position: absolute;
+  font-size: 0.65rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--ink);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.iso-diagram .iso-box .caption {
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--line);
+}
+
+.spec-sheet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.spec-sheet h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 1.2rem;
+  color: var(--ink-deep);
+}
+.spec-sheet h2 .red { color: var(--red); }
+.spec-sheet p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
+  color: var(--ink-deep);
+  font-family: 'Inter', sans-serif;
+}
+.spec-sheet .specs {
+  margin-top: 1.2rem;
+  border-top: 1px dashed var(--line);
+  padding-top: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+}
+.spec-sheet .specs dl { display: grid; grid-template-columns: 110px 1fr; gap: 0.4rem 1rem; }
+.spec-sheet .specs dt {
+  color: var(--ink-soft);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding-top: 0.15rem;
+}
+.spec-sheet .specs dd {
+  color: var(--ink-deep);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dashed var(--line-soft);
+}
+
+/* ─── WORKS — drawing index table ─── */
+.works-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+.works-table th {
+  text-align: left;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 700;
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1.5px solid var(--ink);
+  border-right: 1px solid var(--line);
+}
+.works-table th:last-child { border-right: none; }
+.works-table td {
+  padding: 0.85rem 0.7rem;
+  border-bottom: 1px dashed var(--line);
+  border-right: 1px solid var(--line);
+  vertical-align: top;
+}
+.works-table td:last-child { border-right: none; }
+.works-table tr:hover td { background: var(--line-soft); }
+.works-table .col-num { width: 90px; color: var(--red); font-weight: 700; }
+.works-table .col-yr { width: 60px; color: var(--ink-deep); font-weight: 500; }
+.works-table .col-disc { width: 130px; color: var(--ink); }
+.works-table .col-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  color: var(--ink-deep);
+  line-height: 1.45;
+}
+.works-table .col-desc strong { color: var(--red); font-weight: 600; }
+.works-table .col-rev { width: 110px; }
+.rev-tag {
+  display: inline-block;
+  border: 1px solid var(--ink-soft);
+  color: var(--ink-soft);
+  padding: 0.1rem 0.4rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ─── MUSIC — Spotify embed + sleeves ─── */
+.music-embed {
+  border: 1.5px solid var(--ink);
+  margin: 0 0 1.5rem 0;
+  background: var(--paper);
+  padding: 1.5rem;
+  position: relative;
+}
+.music-embed .embed-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.7rem;
+}
+.music-embed iframe {
+  width: 100%;
+  height: 352px;
+  border-radius: 10px;
+  display: block;
+  border: 0;
+}
+.music-embed .embed-cap {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--line);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+}
+.music-embed .embed-cap a {
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 0.05rem;
+}
+.music-embed .embed-cap a:hover { color: var(--red); border-color: var(--red); }
+
+/* ─── CONTACT ─── */
+.contact-block {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 0;
+}
+.contact-left {
+  padding: 2.5rem;
+  border-right: 1.5px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact-left h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--ink-deep);
+}
+.contact-left h2 .red { color: var(--red); }
+.contact-left .dim-anno {
+  margin-top: 1.5rem;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.contact-left .blurb {
+  margin-top: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-deep);
+  max-width: 380px;
+}
+.contact-right .row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.78rem;
+  align-items: baseline;
+  word-break: break-all;
+}
+.contact-right .row:last-child { border-bottom: none; }
+.contact-right .lbl { color: var(--ink-soft); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.contact-right .val { color: var(--ink-deep); }
+.contact-right .val a {
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--ink); padding-bottom: 0.1rem;
+}
+.contact-right .val a:hover { color: var(--red); border-color: var(--red); }
+
+/* ─── BOTTOM TITLE BLOCK ─── */
+.bottom-block {
+  border: 1.5px solid var(--ink);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.bottom-block .cell {
+  padding: 0.7rem 1rem;
+  border-right: 1px solid var(--line);
+}
+.bottom-block .cell:last-child { border-right: none; }
+.bottom-block .cell .lbl {
+  color: var(--ink-soft);
+  font-size: 0.55rem;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.bottom-block .cell .val { color: var(--ink-deep); font-weight: 500; }
+.bottom-block .firm {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+.bottom-block .firm .red { color: var(--red); }
+
+@media (max-width: 900px) {
+  .titleblock { grid-template-columns: 1fr 1fr; font-size: 0.6rem; }
+  .titleblock .cell:nth-child(n+3):not(.nav-cell) { display: none; }
+  .titleblock .nav-cell { grid-column: 1 / 3; border-top: 1px solid var(--line); }
+  .titleblock .nav-cell a { flex: 1; text-align: center; padding: 0.4rem 0.3rem; font-size: 0.6rem; }
+  .sheet { padding: 3rem 1rem; margin-top: 64px; }
+  .sheet-num { right: 1rem; font-size: 0.6rem; }
+  .hero-frame { padding: 2rem 1rem; }
+  .hero-specs { grid-template-columns: repeat(2, 1fr); }
+  .hero-specs > div { border-bottom: 1px solid var(--line); }
+  .iso-diagram { grid-template-columns: 1fr; gap: 1.5rem; }
+  .drawing-head { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .drawing-head .scale, .drawing-head .num { font-size: 0.6rem; }
+  .drawing-body { padding: 1rem; }
+  .works-table { font-size: 0.7rem; }
+  .works-table .col-disc, .works-table .col-rev { display: none; }
+  .contact-block { grid-template-columns: 1fr; }
+  .contact-left { border-right: none; border-bottom: 1.5px solid var(--ink); padding: 2rem 1.2rem; }
+  .bottom-block { grid-template-columns: 1fr 1fr; }
+  .music-embed iframe { height: 152px; }
+}
+</style>
+</head>
+<body>
+
+<header class="titleblock">
+  <div class="cell"><span class="lbl">Drawing Title</span><span class="val">TOYOPITA — IDENTITY SET MMXXVI</span></div>
+  <div class="cell"><span class="lbl">Drawing No.</span><span class="val red">TOY-001</span></div>
+  <div class="cell"><span class="lbl">Sheet</span><span class="val">01 / 04</span></div>
+  <div class="cell"><span class="lbl">Scale</span><span class="val">1:1</span></div>
+  <div class="cell nav-cell">
+    <a href="#about">/01·about</a>
+    <a href="#works">/02·works</a>
+    <a href="#music">/03·music</a>
+    <a href="#contact">/04·contact</a>
+  </div>
+</header>
+
+<main class="sheet">
+
+  <span class="sheet-num">— Sheet 01 of 04 —</span>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-frame">
+      <div class="crosshair tl"></div>
+      <div class="crosshair tr"></div>
+      <div class="crosshair bl"></div>
+      <div class="crosshair br"></div>
+      <h1>Toyopita</h1>
+      <div class="hero-subtitle">
+        FIG.01 <span class="red">·</span> SOUND ENGINEER <span class="red">·</span> PRODUCER <span class="red">·</span> REMIXER <span class="red">·</span> EST. 2019
+      </div>
+    </div>
+    <div class="hero-specs">
+      <div><span class="lbl">— Subject</span><span class="val">Toyopita Which</span></div>
+      <div><span class="lbl">— Origin</span><span class="val">Osaka, JP <span class="red">●</span></span></div>
+      <div><span class="lbl">— Date of Manufacture</span><span class="val">1992 / Active '19→</span></div>
+      <div><span class="lbl">— Status</span><span class="val red">▲ Open for inquiries</span></div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="drawing">
+    <div class="drawing-head">
+      <span class="num">FIG.02</span>
+      <span class="title">Subject Specification — Artist Profile</span>
+      <span class="scale">SCALE 1:1</span>
+      <span class="rev">REV.A</span>
+    </div>
+    <div class="drawing-body">
+      <div class="iso-diagram">
+        <div class="iso-box">
+          <span class="stamp">DETAIL</span>
+          <div class="figure">
+            <div class="iso-figure"></div>
+            <span class="iso-label" style="top: 30px; right: 20px;">— a. ENGINEER</span>
+            <span class="iso-label" style="bottom: 60px; left: 20px;">— b. PRODUCER</span>
+            <span class="iso-label" style="top: 50%; right: 12px; transform: translateY(-50%);">c. REMIXER</span>
+          </div>
+          <div class="caption">ISOMETRIC VIEW · NTS · OSAKA STUDIO</div>
+        </div>
+        <div class="spec-sheet">
+          <h2>An all-rounder, working out of Osaka<span class="red">.</span></h2>
+          <p>Born in Osaka in 1992, Toyopita began his musical journey in 2019. A true all-rounder, he handles every aspect of music production from track-making to mastering.</p>
+          <p>Deeply inspired by Jamaica's dub culture and the free-spirited expression of reggae music, his approach to music creation is both innovative and deeply rooted in tradition. Captivated by the art of transforming existing tracks and the techniques at the root of remixing, this fascination drives his unique production style — further shaped by influences from hip-hop, R&amp;B, and techno.</p>
+          <div class="specs">
+            <dl>
+              <dt>Real Name</dt><dd>Toyopita Which</dd>
+              <dt>Born</dt><dd>1992 / Osaka, JP</dd>
+              <dt>Established</dt><dd>2019 (MMXIX)</dd>
+              <dt>Disciplines</dt><dd>Mastering · Remix · Production · Engineering</dd>
+              <dt>Genres</dt><dd>Dub · Reggae · Hip-Hop · R&amp;B · Techno</dd>
+              <dt>Status</dt><dd>● Open for inquiries</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WORKS / CAREER HIGHLIGHTS -->
+  <section id="works" class="drawing">
+    <div class="drawing-head">
+      <span class="num">FIG.03</span>
+      <span class="title">Drawing Index — Career Highlights '19—'24</span>
+      <span class="scale">SCALE — TIME</span>
+      <span class="rev">REV.A</span>
+    </div>
+    <div class="drawing-body" style="padding: 0;">
+      <table class="works-table">
+        <thead>
+          <tr>
+            <th>Drawing No.</th>
+            <th>Year</th>
+            <th>Discipline</th>
+            <th>Description</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-num">TOY-019.A</td>
+            <td class="col-yr">2019</td>
+            <td class="col-disc">DEBUT</td>
+            <td class="col-desc">Debuted as <strong>Toyopita Which</strong>, launching a career in electronic music production and sound engineering.</td>
+            <td class="col-rev"><span class="rev-tag">Debut</span></td>
+          </tr>
+          <tr>
+            <td class="col-num">TOY-019.B</td>
+            <td class="col-yr">2019</td>
+            <td class="col-disc">REMIX</td>
+            <td class="col-desc">Remixed SHIMPEI's "noname" feat. Evisbeats — <strong>63,000 plays</strong> · 800 likes on SoundCloud.</td>
+            <td class="col-rev"><span class="rev-tag">SoundCloud</span></td>
+          </tr>
+          <tr>
+            <td class="col-num">TOY-021.A</td>
+            <td class="col-yr">2021</td>
+            <td class="col-disc">FEATURE</td>
+            <td class="col-desc">Featured on <strong>4ceFINGER's EP "44 MAGNUM"</strong>, gaining recognition on HIP HOP DNA.</td>
+            <td class="col-rev"><span class="rev-tag">EP</span></td>
+          </tr>
+          <tr>
+            <td class="col-num">TOY-021.B</td>
+            <td class="col-yr">2021</td>
+            <td class="col-disc">REMIX</td>
+            <td class="col-desc">Released "Know Your Roots", distributed through <strong>Universal Music's Spinnup Japan</strong>.</td>
+            <td class="col-rev"><span class="rev-tag">Released</span></td>
+          </tr>
+          <tr>
+            <td class="col-num">TOY-021.C</td>
+            <td class="col-yr">2021</td>
+            <td class="col-disc">AWARD</td>
+            <td class="col-desc">Winner of the <strong>1st &amp; 2nd 8-bar Awards</strong>. "Fivepita" received high praise from Kubota Masahiko.</td>
+            <td class="col-rev"><span class="rev-tag">Award</span></td>
+          </tr>
+          <tr>
+            <td class="col-num">TOY-022.A</td>
+            <td class="col-yr">2022</td>
+            <td class="col-disc">REMIX</td>
+            <td class="col-desc">Remix of <strong>HIBIKILLA's "LUNA"</strong> featured on Apple Music's official <em>"Latest R&amp;B Playlist"</em>.</td>
+            <td class="col-rev"><span class="rev-tag">Apple Music</span></td>
+          </tr>
+          <tr>
+            <td class="col-num">TOY-022.B</td>
+            <td class="col-yr">2022</td>
+            <td class="col-disc">REMIX</td>
+            <td class="col-desc">Remix of <strong>HIBIKILLA's "Risin' to the Top feat. LAYA"</strong> featured on Spotify's official <em>"Soul Music Japan"</em> playlist.</td>
+            <td class="col-rev"><span class="rev-tag">Spotify</span></td>
+          </tr>
+          <tr>
+            <td class="col-num">TOY-023.A</td>
+            <td class="col-yr">2023</td>
+            <td class="col-disc">PRODUCTION</td>
+            <td class="col-desc">Contributed <strong>3 tracks to HIBIKILLA's album "KillerTune"</strong> — reached <strong>#1 on iTunes Reggae Chart</strong>.</td>
+            <td class="col-rev"><span class="rev-tag">iTunes #1</span></td>
+          </tr>
+          <tr>
+            <td class="col-num">TOY-023.B</td>
+            <td class="col-yr">2023</td>
+            <td class="col-disc">REMIX</td>
+            <td class="col-desc">Remixed <strong>HIBIKILLA's "Yohaku &amp; Sentence"</strong> featuring R&amp;B singer KOTA.</td>
+            <td class="col-rev"><span class="rev-tag">Released</span></td>
+          </tr>
+          <tr>
+            <td class="col-num">TOY-024.A</td>
+            <td class="col-yr">2024</td>
+            <td class="col-disc">MASTERING</td>
+            <td class="col-desc">Mastering engineer for <strong>Beautiful Distance</strong>'s singles "Light My Fire" and "monologue", based in Tokyo.</td>
+            <td class="col-rev"><span class="rev-tag">Tokyo</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- MUSIC -->
+  <section id="music" class="drawing">
+    <div class="drawing-head">
+      <span class="num">FIG.04</span>
+      <span class="title">Component Listing — Discography</span>
+      <span class="scale">Ø 178 mm</span>
+      <span class="rev">REV.A</span>
+    </div>
+    <div class="drawing-body">
+      <div class="music-embed">
+        <div class="embed-label">— SPOTIFY ARTIST · LIVE EMBED</div>
+        <iframe
+          src="https://open.spotify.com/embed/artist/6dEulYPan4tK73h2RMu1Ce?utm_source=generator&theme=0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          title="Toyopita on Spotify"></iframe>
+        <div class="embed-cap">
+          <span>● Live feed from Spotify</span>
+          <span><a href="https://open.spotify.com/artist/6dEulYPan4tK73h2RMu1Ce" target="_blank" rel="noopener">Open on Spotify ↗</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="drawing">
+    <div class="drawing-head">
+      <span class="num">FIG.05</span>
+      <span class="title">I/O Specification — Address Block</span>
+      <span class="scale">SHEET 04/04</span>
+      <span class="rev">REV.A</span>
+    </div>
+    <div class="drawing-body" style="padding: 0;">
+      <div class="contact-block">
+        <div class="contact-left">
+          <h2>Get in <span class="red">touch.</span></h2>
+          <p class="blurb">For inquiries about collaborations, production, remixes, or mastering, please get in touch.</p>
+          <div class="dim-anno">— DIM. NOT TO SCALE · ROUTE: WORLDWIDE</div>
+        </div>
+        <div class="contact-right">
+          <div class="row"><span class="lbl">EMAIL</span><span class="val"><a href="mailto:toyopitawhich@gmail.com">toyopitawhich@gmail.com</a></span></div>
+          <div class="row"><span class="lbl">SPOTIFY</span><span class="val"><a href="https://open.spotify.com/artist/6dEulYPan4tK73h2RMu1Ce" target="_blank" rel="noopener">Spotify Artist Page ↗</a></span></div>
+          <div class="row"><span class="lbl">INQUIRIES</span><span class="val">Mastering / Remix / Production / Collaboration</span></div>
+          <div class="row"><span class="lbl">LOCATION</span><span class="val">Osaka, JP — based</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BOTTOM TITLE BLOCK -->
+  <footer class="bottom-block">
+    <div class="cell">
+      <span class="lbl">Drawn by</span>
+      <span class="val firm">Toyopita<span class="red">.</span> Studio</span>
+    </div>
+    <div class="cell"><span class="lbl">Date</span><span class="val">APR. MMXXVI</span></div>
+    <div class="cell"><span class="lbl">Sheet</span><span class="val">01 / 04</span></div>
+    <div class="cell"><span class="lbl">Project No.</span><span class="val">TOY-001</span></div>
+    <div class="cell"><span class="lbl">© Copyright</span><span class="val">All rights reserved</span></div>
+  </footer>
+
+</main>
+
+</body>
+</html>

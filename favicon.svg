@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#0a3a8c"/>
+  <g stroke="rgba(245,243,237,0.18)" stroke-width="0.5">
+    <path d="M0 16h64M0 32h64M0 48h64M16 0v64M32 0v64M48 0v64"/>
+  </g>
+  <g stroke="#f5f3ed" stroke-width="2" fill="none" stroke-linecap="square">
+    <path d="M14 18h36M32 18v32"/>
+  </g>
+  <g fill="#c83228" font-family="JetBrains Mono, monospace" font-size="6" font-weight="700">
+    <text x="4" y="60" letter-spacing="0.4">TOY-001</text>
+  </g>
+</svg>
