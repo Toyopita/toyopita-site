@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Privacy notice for toyopita.com. No personal data is collected; analytics use Cloudflare's privacy-first service.">
+<meta name="theme-color" content="#0a3a8c">
+
+<title>Privacy — Toyopita</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://toyopita.com/privacy.html">
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Cloudflare Web Analytics (privacy-first, no cookies, no PII) -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc4ab6bc0ba54106a29e53f55933f905"}'></script>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --paper: #f5f3ed;
+  --ink: #0a3a8c;
+  --ink-soft: #2c5cb0;
+  --ink-deep: #04204e;
+  --red: #c83228;
+  --line: rgba(10,58,140,0.25);
+  --line-soft: rgba(10,58,140,0.1);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #04122a;
+    --ink: #6db5ff;
+    --ink-soft: #4c8fe6;
+    --ink-deep: #cfe3ff;
+    --red: #ff7a6e;
+    --line: rgba(109,181,255,0.3);
+    --line-soft: rgba(109,181,255,0.12);
+  }
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--paper);
+  color: var(--ink-deep);
+  font-size: 13px;
+  line-height: 1.55;
+  background-image:
+    linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+}
+::selection { background: var(--ink); color: var(--paper); }
+
+/* ── title block (same vibe as index) ── */
+.titleblock {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto;
+  background: var(--paper);
+  border-bottom: 2px solid var(--ink);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.titleblock .cell {
+  padding: 0.4rem 0.7rem;
+  border-right: 1px solid var(--line);
+  color: var(--ink-deep);
+}
+.titleblock .cell:last-child { border-right: none; }
+.titleblock .cell .lbl { font-size: 0.55rem; color: var(--ink-soft); letter-spacing: 0.15em; display: block; margin-bottom: 0.1rem; }
+.titleblock .cell .val { color: var(--ink-deep); font-weight: 500; }
+.titleblock .cell .val.red { color: var(--red); }
+.titleblock .nav-cell { padding: 0; display: flex; }
+.titleblock .nav-cell a {
+  display: block; padding: 0.4rem 0.8rem;
+  color: var(--ink-deep); text-decoration: none; font-weight: 500;
+  border-right: 1px solid var(--line);
+}
+.titleblock .nav-cell a:last-child { border-right: none; }
+.titleblock .nav-cell a:hover { background: var(--ink); color: var(--paper); }
+
+/* ── content ── */
+.sheet {
+  margin-top: 32px;
+  padding: 5rem 3rem 4rem;
+  max-width: 1000px;
+  margin-left: auto; margin-right: auto;
+  position: relative;
+}
+.sheet-num {
+  position: absolute;
+  top: 1rem; right: 3rem;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.drawing {
+  border: 1.5px solid var(--ink);
+  margin-bottom: 2rem;
+  background: var(--paper);
+}
+.drawing-head {
+  display: grid;
+  grid-template-columns: 100px 1fr auto auto;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1.5px solid var(--ink);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  align-items: center;
+}
+.drawing-head .num { color: var(--red); font-weight: 700; }
+.drawing-head .title {
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--ink-deep);
+  font-family: 'Inter', sans-serif;
+}
+.drawing-head .scale { color: var(--ink-soft); }
+.drawing-head .rev {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.15rem 0.5rem;
+  font-size: 0.65rem;
+}
+.drawing-body { padding: 2rem; }
+
+h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink-deep);
+  margin-bottom: 0.5rem;
+}
+h1 .red { color: var(--red); }
+
+.subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 1rem;
+}
+
+h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 2rem 0 0.7rem;
+  color: var(--ink-deep);
+}
+h2 .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--red);
+  letter-spacing: 0.2em;
+  margin-right: 0.6rem;
+  vertical-align: 0.2em;
+}
+
+p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink-deep);
+  margin-bottom: 0.9rem;
+  max-width: 70ch;
+}
+p strong { font-weight: 600; color: var(--red); }
+
+ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.4rem;
+}
+ul li {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink-deep);
+  margin-bottom: 0.4rem;
+}
+ul li::marker { color: var(--red); }
+
+a.link {
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--ink); padding-bottom: 0.05rem;
+}
+a.link:hover { color: var(--red); border-color: var(--red); }
+
+.bottom-block {
+  border: 1.5px solid var(--ink);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.bottom-block .cell {
+  padding: 0.7rem 1rem;
+  border-right: 1px solid var(--line);
+}
+.bottom-block .cell:last-child { border-right: none; }
+.bottom-block .cell .lbl { color: var(--ink-soft); font-size: 0.55rem; display: block; margin-bottom: 0.2rem; }
+.bottom-block .cell .val { color: var(--ink-deep); font-weight: 500; }
+.bottom-block .firm {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+.bottom-block .firm .red { color: var(--red); }
+.bottom-block a { color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
+
+.section-divider {
+  margin: 1.5rem 0 0.8rem;
+  border: 0;
+  border-top: 1px dashed var(--line);
+}
+
+.lang-tag {
+  display: inline-block;
+  background: var(--ink); color: var(--paper);
+  padding: 0.1rem 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  margin-right: 0.5rem;
+  vertical-align: 0.2em;
+}
+
+@media (max-width: 900px) {
+  .titleblock { grid-template-columns: 1fr 1fr; font-size: 0.6rem; }
+  .titleblock .cell:nth-child(n+3):not(.nav-cell) { display: none; }
+  .titleblock .nav-cell { grid-column: 1 / 3; border-top: 1px solid var(--line); }
+  .titleblock .nav-cell a { flex: 1; text-align: center; padding: 0.4rem 0.3rem; font-size: 0.6rem; }
+  .sheet { padding: 4rem 1rem 3rem; margin-top: 64px; }
+  .sheet-num { right: 1rem; font-size: 0.6rem; }
+  .drawing-head { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .drawing-head .scale, .drawing-head .num { font-size: 0.6rem; }
+  .drawing-body { padding: 1rem; }
+  .bottom-block { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  body { font-size: 12px; }
+  .titleblock { font-size: 0.55rem; }
+  .titleblock .cell { padding: 0.35rem 0.5rem; }
+  .titleblock .nav-cell a { padding: 0.4rem 0.15rem; font-size: 0.55rem; letter-spacing: 0.05em; }
+  .sheet { padding: 3rem 0.7rem 2.5rem; margin-top: 70px; }
+  .drawing-head { grid-template-columns: auto 1fr; padding: 0.5rem 0.7rem; gap: 0.4rem 0.7rem; }
+  .drawing-head .num { grid-column: 1; font-size: 0.55rem; }
+  .drawing-head .title { grid-column: 2; font-size: 0.82rem; line-height: 1.25; }
+  .drawing-head .scale { grid-column: 1 / 3; font-size: 0.55rem; opacity: 0.7; }
+  .drawing-head .rev { grid-column: 1 / 3; justify-self: start; padding: 0.1rem 0.4rem; font-size: 0.55rem; }
+  .drawing-body { padding: 0.8rem; }
+  h1 { font-size: clamp(2rem, 9vw, 3rem); }
+  p, ul li { font-size: 0.88rem; }
+  .bottom-block { grid-template-columns: 1fr; font-size: 0.55rem; }
+  .bottom-block .cell { border-right: none; border-bottom: 1px solid var(--line); padding: 0.5rem 0.7rem; }
+  .bottom-block .cell:last-child { border-bottom: none; }
+  .bottom-block .firm { font-size: 0.85rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="titleblock">
+  <div class="cell"><span class="lbl">Drawing Title</span><span class="val">TOYOPITA — PRIVACY NOTICE MMXXVI</span></div>
+  <div class="cell"><span class="lbl">Drawing No.</span><span class="val red">TOY-002</span></div>
+  <div class="cell"><span class="lbl">Sheet</span><span class="val">P / 01</span></div>
+  <div class="cell"><span class="lbl">Scale</span><span class="val">1:1</span></div>
+  <div class="cell nav-cell">
+    <a href="/">/00·home</a>
+    <a href="/#about">/01·about</a>
+    <a href="/#works">/02·works</a>
+    <a href="/#music">/03·music</a>
+    <a href="/#contact">/04·contact</a>
+  </div>
+</header>
+
+<main class="sheet">
+  <span class="sheet-num">— Privacy Notice —</span>
+
+  <section class="drawing">
+    <div class="drawing-head">
+      <span class="num">FIG.P.01</span>
+      <span class="title">Privacy Notice</span>
+      <span class="scale">SCALE 1:1</span>
+      <span class="rev">REV.A</span>
+    </div>
+    <div class="drawing-body">
+
+      <h1>Privacy Notice<span class="red">.</span></h1>
+      <div class="subtitle">— EFFECTIVE APR. MMXXVI · TOY-002 —</div>
+
+      <p>This site (<a class="link" href="https://toyopita.com">toyopita.com</a>) does not collect personally identifying information about its visitors. There are no sign-ups, no comment sections, and no logged-in user accounts. The pages are static HTML.</p>
+
+      <h2><span class="num">— 01</span>Analytics</h2>
+      <p>The site uses <strong>Cloudflare Web Analytics</strong> for aggregate visitor statistics. Cloudflare Web Analytics is a privacy-first service:</p>
+      <ul>
+        <li>It does not use cookies or local storage.</li>
+        <li>It does not collect or store IP addresses.</li>
+        <li>It does not track individuals across sites.</li>
+        <li>Only aggregate metrics are reported (page views, country, referrer, browser).</li>
+      </ul>
+      <p>More information about how Cloudflare handles this data is available at <a class="link" href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>.</p>
+
+      <h2><span class="num">— 02</span>Hosting &amp; Logs</h2>
+      <p>The site is delivered through Cloudflare Pages. Cloudflare may retain technical request logs for short periods for the purposes of security, abuse prevention, and infrastructure operation. These logs are not accessible to or used by the site owner for any tracking purpose.</p>
+
+      <h2><span class="num">— 03</span>Embedded Content</h2>
+      <p>The site embeds the official Spotify artist player. When you interact with the embedded player, Spotify's own privacy policy applies. See <a class="link" href="https://www.spotify.com/legal/privacy-policy/" target="_blank" rel="noopener">Spotify Privacy Policy</a>. Outbound links to Apple Music, Instagram, and SoundCloud are similarly governed by their respective privacy policies once you click through.</p>
+
+      <h2><span class="num">— 04</span>Email Inquiries</h2>
+      <p>If you contact the studio at <a class="link" href="mailto:toyopitawhich@gmail.com">toyopitawhich@gmail.com</a>, your email address and the contents of your message are received and stored for the purpose of replying. The information is not shared with any third party and is not used for marketing.</p>
+
+      <h2><span class="num">— 05</span>Your Rights</h2>
+      <p>If you believe the site has any information about you and would like it removed, please write to <a class="link" href="mailto:toyopitawhich@gmail.com">toyopitawhich@gmail.com</a>. We will respond promptly.</p>
+
+      <h2><span class="num">— 06</span>Changes</h2>
+      <p>This notice may be revised. Material changes will be reflected in the revision tag at the top of this page (currently REV.A) and dated.</p>
+
+      <hr class="section-divider">
+
+      <h2><span class="num">— 07</span>本ポリシーについて</h2>
+      <p><span class="lang-tag">JP</span>本サイト（toyopita.com）は訪問者の個人を特定する情報を収集していません。アクセス解析は <strong>Cloudflare Web Analytics</strong> を利用しており、Cookieもユーザー識別IDも、IPアドレスの保存も行いません。集計データ（ページビュー数・国・リファラ等）のみを取得しています。</p>
+      <p>埋め込まれた Spotify プレーヤーの利用、または外部リンク（Apple Music / Instagram / SoundCloud）への遷移後は各サービス事業者のプライバシーポリシーが適用されます。</p>
+      <p>お問い合わせ先: <a class="link" href="mailto:toyopitawhich@gmail.com">toyopitawhich@gmail.com</a></p>
+
+    </div>
+  </section>
+
+  <footer class="bottom-block">
+    <div class="cell">
+      <span class="lbl">Drawn by</span>
+      <span class="val firm">Toyopita<span class="red">.</span> Studio</span>
+    </div>
+    <div class="cell"><span class="lbl">Date</span><span class="val">APR. MMXXVI</span></div>
+    <div class="cell"><span class="lbl">Sheet</span><span class="val">P / 01</span></div>
+    <div class="cell"><span class="lbl">Project No.</span><span class="val">TOY-002</span></div>
+    <div class="cell"><span class="lbl">Return</span><span class="val"><a href="/">to /home</a></span></div>
+  </footer>
+
+</main>
+
+<script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('pageshow', function () { window.scrollTo(0, 0); });
+</script>
+
+</body>
+</html>
