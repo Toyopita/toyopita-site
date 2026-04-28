@@ -868,5 +868,32 @@ html, body { overflow-x: hidden; max-width: 100%; }
 
 </main>
 
+<script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+  window.addEventListener('pageshow', function () {
+    if (location.hash) {
+      window.scrollTo(0, 0);
+      history.replaceState(null, '', location.pathname + location.search);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(function () {
+        history.replaceState(null, '', location.pathname + location.search);
+      }, 600);
+    });
+  });
+</script>
+
 </body>
 </html>
